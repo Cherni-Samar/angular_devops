@@ -1,0 +1,5 @@
+{
+  "name": "Student Manager Pro",
+  "description": "A Spring Boot compatible frontend for managing Students and Enrollments with AI academic assistance.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,86 @@
+<div class="flex h-screen bg-slate-50 overflow-hidden">
+  
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col flex-shrink-0 shadow-xl z-20">
+    <div class="p-6 flex items-center gap-3 border-b border-slate-800">
+      <div class="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">S</div>
+      <span class="font-bold text-white text-lg tracking-tight">Student Mgmt</span>
+    </div>
+
+    <nav class="flex-grow p-4 space-y-2">
+      <button (click)="setView('dashboard')" 
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200"
+              [class]="currentView() === 'dashboard' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20' : 'hover:bg-slate-800 hover:text-white'">
+        <span [innerHTML]="Icons.dashboard | safeHtml"></span>
+        <span class="font-medium">Dashboard</span>
+      </button>
+
+      <button (click)="setView('students')" 
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200"
+              [class]="currentView() === 'students' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20' : 'hover:bg-slate-800 hover:text-white'">
+        <span [innerHTML]="Icons.students | safeHtml"></span>
+        <span class="font-medium">Students</span>
+      </button>
+
+      <button (click)="setView('enrollments')" 
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200"
+              [class]="currentView() === 'enrollments' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20' : 'hover:bg-slate-800 hover:text-white'">
+        <span [innerHTML]="Icons.enrollments | safeHtml"></span>
+        <span class="font-medium">Enrollments</span>
+      </button>
+
+      <button (click)="setView('departments')" 
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200"
+              [class]="currentView() === 'departments' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20' : 'hover:bg-slate-800 hover:text-white'">
+        <span [innerHTML]="Icons.departments | safeHtml"></span>
+        <span class="font-medium">Departments</span>
+      </button>
+
+      <div class="pt-4 mt-4 border-t border-slate-800">
+        <div class="px-4 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Academic Tools</div>
+        <button (click)="setView('ai-advisor')" 
+                class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group"
+                [class]="currentView() === 'ai-advisor' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/20' : 'hover:bg-slate-800 hover:text-white'">
+          <span [innerHTML]="Icons.ai | safeHtml" [class]="currentView() !== 'ai-advisor' ? 'text-purple-400 group-hover:text-white' : ''"></span>
+          <span class="font-medium">AI Advisor</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="p-4 border-t border-slate-800">
+      <div class="flex items-center gap-3 px-4 py-2">
+        <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">AD</div>
+        <div class="flex-col flex">
+          <span class="text-sm font-medium text-white">Admin</span>
+          <span class="text-xs text-slate-500">Registrar Office</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col h-full overflow-hidden bg-slate-50 relative">
+    <!-- Topbar -->
+    <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shadow-sm z-10">
+      <h1 class="text-xl font-bold text-slate-800 capitalize">{{ currentView().replace('-', ' ') }}</h1>
+      <div class="flex items-center gap-4">
+        <div class="text-sm text-slate-500">Spring Boot Backend: <span class="text-green-600 font-mono text-xs bg-green-50 px-2 py-1 rounded">port 8089</span></div>
+        <button class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition-colors relative">
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+           <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Scrollable Content Area -->
+    <div class="flex-grow overflow-auto p-8 relative">
+       @switch (currentView()) {
+         @case ('dashboard') { <app-dashboard /> }
+         @case ('students') { <app-students /> }
+         @case ('enrollments') { <app-enrollments /> }
+         @case ('departments') { <app-departments /> }
+         @case ('ai-advisor') { <app-ai-tools /> }
+       }
+    </div>
+  </main>
+</div>
