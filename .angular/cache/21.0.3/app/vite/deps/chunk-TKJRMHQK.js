@@ -2,7 +2,7 @@ import {
   PlatformLocation,
   XhrFactory,
   parseCookieValue
-} from "./chunk-4E7R6R36.js";
+} from "./chunk-SULUFHFU.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -37,7 +37,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-PLX4VCLI.js";
+} from "./chunk-O3E2R42W.js";
 import {
   Observable,
   concatMap,
@@ -1306,7 +1306,6 @@ var HTTP_INTERCEPTOR_FNS = new InjectionToken(typeof ngDevMode !== "undefined" &
 });
 var HTTP_ROOT_INTERCEPTOR_FNS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "HTTP_ROOT_INTERCEPTOR_FNS" : "");
 var REQUESTS_CONTRIBUTE_TO_STABILITY = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "REQUESTS_CONTRIBUTE_TO_STABILITY" : "", {
-  providedIn: "root",
   factory: () => true
 });
 function legacyInterceptorFnFactory() {
@@ -1743,7 +1742,6 @@ var XSRF_ENABLED = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevM
 });
 var XSRF_DEFAULT_COOKIE_NAME = "XSRF-TOKEN";
 var XSRF_COOKIE_NAME = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_COOKIE_NAME" : "", {
-  providedIn: "root",
   factory: () => XSRF_DEFAULT_COOKIE_NAME
 });
 var XSRF_DEFAULT_HEADER_NAME = "X-XSRF-TOKEN";
@@ -2426,4 +2424,4 @@ export {
   HTTP_TRANSFER_CACHE_ORIGIN_MAP,
   withHttpTransferCache
 };
-//# sourceMappingURL=chunk-SBUJXABW.js.map
+//# sourceMappingURL=chunk-TKJRMHQK.js.map

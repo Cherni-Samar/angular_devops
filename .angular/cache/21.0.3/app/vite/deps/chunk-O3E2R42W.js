@@ -639,7 +639,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = new Version("21.0.5");
+var VERSION = new Version("21.0.6");
 var ERROR_DETAILS_PAGE_BASE_URL = (() => {
   const versionSubDomain = VERSION.major !== "0" ? `v${VERSION.major}.` : "";
   return `https://${versionSubDomain}angular.dev/errors`;
@@ -1071,6 +1071,7 @@ var NG_ENV_ID = getClosureSafeProperty({
   __NG_ENV_ID__: getClosureSafeProperty
 });
 function getNgModuleDef(type) {
+  assertTypeDefined(type, "@NgModule");
   return type[NG_MOD_DEF] || null;
 }
 function getNgModuleDefOrThrow(type) {
@@ -1081,6 +1082,7 @@ function getNgModuleDefOrThrow(type) {
   return ngModuleDef;
 }
 function getComponentDef(type) {
+  assertTypeDefined(type, "@Component");
   return type[NG_COMP_DEF] || null;
 }
 function getDirectiveDefOrThrow(type) {
@@ -1091,10 +1093,17 @@ function getDirectiveDefOrThrow(type) {
   return def;
 }
 function getDirectiveDef(type) {
+  assertTypeDefined(type, "@Directive");
   return type[NG_DIR_DEF] || null;
 }
 function getPipeDef(type) {
+  assertTypeDefined(type, "@Pipe");
   return type[NG_PIPE_DEF] || null;
+}
+function assertTypeDefined(type, symbolType) {
+  if (type == null) {
+    throw new RuntimeError(-919, (typeof ngDevMode === "undefined" || ngDevMode) && `Cannot read ${symbolType} metadata. This can indicate a runtime circular dependency in your app that needs to be resolved.`);
+  }
 }
 function isStandalone(type) {
   const def = getComponentDef(type) || getDirectiveDef(type) || getPipeDef(type);
@@ -1220,7 +1229,7 @@ function injectRootLimpMode(token, notFoundValue, flags) {
   }
   if (flags & 8) return null;
   if (notFoundValue !== void 0) return notFoundValue;
-  throwProviderNotFoundError(token, "Injector");
+  throwProviderNotFoundError(token, typeof ngDevMode !== "undefined" && ngDevMode ? "Injector" : "");
 }
 function assertInjectImplementationNotEqual(fn) {
   ngDevMode && assertNotEqual(_injectImplementation, fn, "Calling ɵɵinject would cause infinite recursion");
@@ -11723,7 +11732,7 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.0.5"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.0.6"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -12703,7 +12712,7 @@ var StandaloneService = class _StandaloneService {
     }
     if (!this.cachedInjectors.has(componentDef)) {
       const providers = internalImportProvidersFrom(false, componentDef.type);
-      const standaloneInjector = providers.length > 0 ? createEnvironmentInjector([providers], this._injector, `Standalone[${componentDef.type.name}]`) : null;
+      const standaloneInjector = providers.length > 0 ? createEnvironmentInjector([providers], this._injector, typeof ngDevMode !== "undefined" && ngDevMode ? `Standalone[${componentDef.type.name}]` : "") : null;
       this.cachedInjectors.set(componentDef, standaloneInjector);
     }
     return this.cachedInjectors.get(componentDef);
@@ -26397,4 +26406,4 @@ export {
   RESPONSE_INIT,
   REQUEST_CONTEXT
 };
-//# sourceMappingURL=chunk-PLX4VCLI.js.map
+//# sourceMappingURL=chunk-O3E2R42W.js.map

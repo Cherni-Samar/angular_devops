@@ -1,7 +1,7 @@
-import "./chunk-CAPQRT6I.js";
+import "./chunk-JNKAWOOC.js";
 import {
   getDOM
-} from "./chunk-4E7R6R36.js";
+} from "./chunk-SULUFHFU.js";
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -45,7 +45,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-PLX4VCLI.js";
+} from "./chunk-O3E2R42W.js";
 import {
   Subject,
   forkJoin,
@@ -4673,7 +4673,7 @@ var UntypedFormBuilder = class _UntypedFormBuilder extends FormBuilder {
     }]
   }], null, null);
 })();
-var VERSION = new Version("21.0.5");
+var VERSION = new Version("21.0.6");
 var FormsModule = class _FormsModule {
   static withConfig(opts) {
     return {
